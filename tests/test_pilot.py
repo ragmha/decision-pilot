@@ -23,7 +23,7 @@ class Fixed:
 
 
 class NormaliseTest(unittest.TestCase):
-    questions = {"t": {"type": "choice"}, "u": {"type": "noul"}, "s": {"type": "score"}}
+    questions = {"t": {"type": "choice", "criteria": {"a": "", "b": ""}}, "u": {"type": "noul"}, "s": {"type": "score"}}
 
     def test_reads_documented_and_alternate_field_names(self):
         for key in ("probabilities", "probs", "distribution", "scores"):
