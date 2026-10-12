@@ -1,0 +1,48 @@
+# Shadow-mode issue routing. By default it only records what it *would* do.
+# Set the repository variable DECISION_MODE=apply to label issues it is confident about.
+name: Shadow route issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Decide
+        id: decide
+        env:
+          # Issue text is untrusted: pass it through env, never interpolate it into the script.
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_ID: ${{ github.event.issue.number }}
+          AZURE_ENDPOINT: ${{ secrets.AZURE_ENDPOINT }}
+          AZURE_API_KEY: ${{ secrets.AZURE_API_KEY }}
+          DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }}
+        run: |
+          python -m decision_pilot route --id "$ISSUE_ID" --title "$ISSUE_TITLE" --body "$ISSUE_BODY" \
+            --log decisions/routing.jsonl > decision.json
+          echo "team=$(jq -r .team decision.json)" >> "$GITHUB_OUTPUT"
+          echo "action=$(jq -r .action decision.json)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: decision-${{ github.event.issue.number }}
+          path: decisions/
+      - name: Apply label
+        if: vars.DECISION_MODE == 'apply' && steps.decide.outputs.action == 'act'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TEAM: ${{ steps.decide.outputs.team }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh label create "team:$TEAM" --force --repo "$GITHUB_REPOSITORY"
+          gh issue edit "$NUMBER" --add-label "team:$TEAM" --repo "$GITHUB_REPOSITORY"

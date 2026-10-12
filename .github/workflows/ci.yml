@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python -m unittest -v
+      - name: Replay labelled history (mock provider)
+        env:
+          DECISION_PROVIDER: mock
+        run: |
+          python -m decision_pilot replay routing
+          python -m decision_pilot replay gate
+          cat reports/routing.md reports/gate.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: replay-reports
+          path: reports/

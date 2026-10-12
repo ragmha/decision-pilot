@@ -1,0 +1,24 @@
+{
+  "version": "routing-v1",
+  "instructions": "Which team should own this GitHub issue? Choose the team that owns the primary problem, not a symptom.",
+  "teams": {
+    "platform": "Builds, CI pipelines, deployments, infrastructure, Kubernetes, performance, latency, timeouts, caching, database, outage, server errors",
+    "frontend": "Web UI, CSS, layout, buttons, pages, browser rendering, accessibility, keyboard, screen reader, mobile view, dark mode",
+    "security": "Vulnerabilities, authentication, login, permissions, tokens, secrets, CVE, dependency advisories, XSS, injection, access control",
+    "docs": "Documentation, README, guides, typos, examples, tutorials, broken links, API reference wording"
+  },
+  "severity": [
+    "Low: cosmetic, typo, wording, minor polish, nice to have",
+    "Medium: bug with a workaround, slow, flaky, confusing, some users",
+    "High: broken feature, failing builds, no workaround, many users, blocked",
+    "Critical: outage, data loss, security breach, exploit, all users, production down"
+  ],
+  "targets": {
+    "act_precision": 0.95,
+    "review_precision": 0.7
+  },
+  "thresholds": {
+    "act": 0.9,
+    "review": 0.6
+  }
+}

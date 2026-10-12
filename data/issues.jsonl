@@ -1,0 +1,48 @@
+{"id": "ISSUE-001", "title": "CI pipeline fails on main after cache upgrade", "body": "The build job times out on every run since the runner cache changed.", "team": "platform", "severity": 2}
+{"id": "ISSUE-002", "title": "Deployments to staging hang", "body": "Kubernetes rollout never finishes; pods stay pending.", "team": "platform", "severity": 2}
+{"id": "ISSUE-003", "title": "API latency spiked to 4s", "body": "p95 latency on the orders endpoint jumped after the database migration.", "team": "platform", "severity": 2}
+{"id": "ISSUE-004", "title": "Production down: 502 from every server", "body": "All users see server errors. Outage started 09:00.", "team": "platform", "severity": 3}
+{"id": "ISSUE-005", "title": "Flaky integration test in pipeline", "body": "The payments integration test fails roughly one run in ten, rerun passes.", "team": "platform", "severity": 1}
+{"id": "ISSUE-006", "title": "Docker image too large", "body": "Image grew to 2GB which slows deployments. Nice to have a slimmer base.", "team": "platform", "severity": 0}
+{"id": "ISSUE-007", "title": "Database connection pool exhausted", "body": "Under load the service throws timeouts; restarting the pods is a workaround.", "team": "platform", "severity": 1}
+{"id": "ISSUE-008", "title": "Nightly build broken", "body": "Builds fail with out of memory on the infrastructure runners, blocked release.", "team": "platform", "severity": 2}
+{"id": "ISSUE-009", "title": "Cache invalidation is slow", "body": "Changes take ten minutes to appear because caching TTL is high.", "team": "platform", "severity": 1}
+{"id": "ISSUE-010", "title": "Data loss after failed migration", "body": "A database migration dropped rows for some tenants. Production data loss.", "team": "platform", "severity": 3}
+{"id": "ISSUE-011", "title": "Autoscaling does not trigger", "body": "Kubernetes HPA ignores CPU spikes so latency climbs.", "team": "platform", "severity": 1}
+{"id": "ISSUE-012", "title": "Speed up CI", "body": "Pipelines take 25 minutes; could we parallelise the test jobs?", "team": "platform", "severity": 0}
+{"id": "ISSUE-013", "title": "Submit button overlaps footer on mobile", "body": "On mobile view the button sits on top of the footer layout.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-014", "title": "Dark mode text unreadable", "body": "In dark mode the CSS sets grey text on a grey card.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-015", "title": "Keyboard focus lost in modal", "body": "Keyboard users cannot reach the close button; screen reader announces nothing. Accessibility blocker.", "team": "frontend", "severity": 2}
+{"id": "ISSUE-016", "title": "Page renders blank in Safari", "body": "The settings page shows nothing in Safari browser rendering; no workaround.", "team": "frontend", "severity": 2}
+{"id": "ISSUE-017", "title": "Icon misaligned in header", "body": "The logo is two pixels off. Cosmetic.", "team": "frontend", "severity": 0}
+{"id": "ISSUE-018", "title": "Table layout breaks at 1024px", "body": "Columns overflow the page at tablet width.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-019", "title": "Missing alt text on charts", "body": "Screen reader users get no description of the dashboard charts.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-020", "title": "Dropdown flickers on hover", "body": "Minor polish: menu flickers when the pointer moves quickly.", "team": "frontend", "severity": 0}
+{"id": "ISSUE-021", "title": "Checkout page unusable for all users", "body": "Buttons do nothing after the UI release; every browser affected.", "team": "frontend", "severity": 3}
+{"id": "ISSUE-022", "title": "Add loading spinner to search page", "body": "The page feels frozen while results load. Nice to have.", "team": "frontend", "severity": 0}
+{"id": "ISSUE-023", "title": "Contrast fails WCAG on links", "body": "Link colour contrast is 3:1 on the pricing page.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-024", "title": "Form errors appear under the wrong field", "body": "Validation messages render beside the email field instead of the password field.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-025", "title": "XSS in comment preview", "body": "Comment markdown preview executes script tags. Exploit confirmed.", "team": "security", "severity": 3}
+{"id": "ISSUE-026", "title": "Token printed in CI logs", "body": "A deploy token is visible in the build log output.", "team": "security", "severity": 3}
+{"id": "ISSUE-027", "title": "Bump lodash for CVE advisory", "body": "Dependency advisory: lodash prototype pollution CVE.", "team": "security", "severity": 1}
+{"id": "ISSUE-028", "title": "Users can see other orgs' projects", "body": "Access control check missing on the projects API; permissions bypass.", "team": "security", "severity": 3}
+{"id": "ISSUE-029", "title": "Login session never expires", "body": "Authentication cookies have no expiry, sessions live forever.", "team": "security", "severity": 2}
+{"id": "ISSUE-030", "title": "SQL injection in search filter", "body": "The sort parameter is concatenated into the query. Injection possible.", "team": "security", "severity": 3}
+{"id": "ISSUE-031", "title": "Rotate leaked API key", "body": "An api key was committed to a public branch last week.", "team": "security", "severity": 2}
+{"id": "ISSUE-032", "title": "Password reset email reveals account existence", "body": "The reset form says whether an email is registered.", "team": "security", "severity": 1}
+{"id": "ISSUE-033", "title": "Enable secret scanning push protection", "body": "We should block secrets before they land in the repo.", "team": "security", "severity": 1}
+{"id": "ISSUE-034", "title": "Outdated TLS configuration", "body": "The ingress still allows TLS 1.0.", "team": "security", "severity": 1}
+{"id": "ISSUE-035", "title": "Typo in README install section", "body": "'instal' should be 'install'.", "team": "docs", "severity": 0}
+{"id": "ISSUE-036", "title": "Broken link in contributing guide", "body": "The link to the code of conduct returns 404.", "team": "docs", "severity": 0}
+{"id": "ISSUE-037", "title": "API reference wrong for pagination", "body": "The guide says page starts at 1 but the API reference wording implies 0.", "team": "docs", "severity": 1}
+{"id": "ISSUE-038", "title": "Add example for webhook setup", "body": "A tutorial with a worked example would help new users.", "team": "docs", "severity": 0}
+{"id": "ISSUE-039", "title": "Quickstart guide skips auth step", "body": "Following the guide fails because it never explains creating a token.", "team": "docs", "severity": 1}
+{"id": "ISSUE-040", "title": "Outdated screenshots in docs", "body": "Guides show the old navigation.", "team": "docs", "severity": 0}
+{"id": "ISSUE-041", "title": "Clarify rate limit wording", "body": "The documentation is confusing about per-minute versus per-hour limits.", "team": "docs", "severity": 0}
+{"id": "ISSUE-042", "title": "Missing migration guide for v3", "body": "Users are blocked upgrading because there are no docs for breaking changes.", "team": "docs", "severity": 2}
+{"id": "ISSUE-043", "title": "Login page slow and misaligned", "body": "The login form loads slowly and the button is misaligned.", "team": "frontend", "severity": 1}
+{"id": "ISSUE-044", "title": "Docs site deploy failing", "body": "The documentation site build fails in the CI pipeline.", "team": "platform", "severity": 1}
+{"id": "ISSUE-045", "title": "Security headers missing from docs site", "body": "The docs pages send no CSP header.", "team": "security", "severity": 1}
+{"id": "ISSUE-046", "title": "Error page leaks stack trace", "body": "The 500 page shows a stack trace with internal paths to users.", "team": "security", "severity": 2}
+{"id": "ISSUE-047", "title": "README says to disable TLS verification", "body": "The troubleshooting guide tells users to turn off certificate checks.", "team": "security", "severity": 1}
+{"id": "ISSUE-048", "title": "Accessibility docs are out of date", "body": "The guide on keyboard navigation describes the old modal.", "team": "docs", "severity": 0}
